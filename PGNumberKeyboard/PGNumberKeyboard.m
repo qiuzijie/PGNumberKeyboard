@@ -22,7 +22,7 @@
     if (self = [super init]) {
         self.textField = textField;
         self.verify = true;
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = keyboardColor(210, 213, 219);
         self.frame = CGRectMake(0, keyboardScreenHeight - 150, keyboardScreenHeight, 150);
         [self setupKeyBoard];
         [textField reloadInputViews];
@@ -34,7 +34,7 @@
     if (self = [super init]) {
         self.textView = textView;
         self.verify = true;
-        self.backgroundColor = [UIColor greenColor];
+        self.backgroundColor = keyboardColor(210, 213, 219);
         self.frame = CGRectMake(0, keyboardScreenHeight - 150, keyboardScreenHeight, 150);
         [self setupKeyBoard];
         [textView reloadInputViews];
@@ -52,82 +52,78 @@
     }
 }
 - (void)setupKeyBoard {
-    self.frame=CGRectMake(0, keyboardScreenHeight-243, keyboardScreenWidth, 243);
-    int space = 1;
-    NSInteger leftSpace = 1;
-    for (int i=0; i< 9; i++) {
-        NSString *str=[NSString stringWithFormat:@"%d",i+1];
-        UIButton *button=[UIButton buttonWithType:UIButtonTypeSystem];
-        if (i<3) {
-            button.frame=CGRectMake(i%3*(keyboardScreenWidth/4)+leftSpace, i/3*61, keyboardScreenWidth/4-1, 60);
-        }
-        else{
-            button.frame=CGRectMake(i%3*(keyboardScreenWidth/4)+leftSpace, i/3*60+i/3*space, keyboardScreenWidth/4-1, 60);
-        }
+    self.frame=CGRectMake(0, keyboardScreenHeight-230, keyboardScreenWidth, 230);
+    CGFloat space = 5;
+    CGFloat buttonWidth = (keyboardScreenWidth - space*4)/4;
+    CGFloat buttonHeight = 50;
+    
+    for (int i=0; i< 12; i++) {
+        
+        UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+        CGFloat x = (i%3)*(buttonWidth+space) + space;
+        CGFloat y = (i/3)*(buttonHeight+space) + space;
+        button.frame=CGRectMake(x, y, buttonWidth, buttonHeight);
         button.backgroundColor=[UIColor whiteColor];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button.titleLabel.font=[UIFont systemFontOfSize:24];
+        button.layer.cornerRadius = 8;
+        button.clipsToBounds = YES;
+        NSString *str = nil;
+        if (i == 9) {
+            button.tag = 11;
+            str = @".";
+        } else if (i == 10){
+            button.tag = 0;
+            str = @"0";
+        } else if (i == 11){
+            button.tag = 12;
+            str = @"-";
+        } else {
+            button.tag = i + 1;
+            str=[NSString stringWithFormat:@"%d",i+1];
+        }
         [button setTitle:str forState:UIControlStateNormal];
-        button.tag = i + 1;
+        [button setBackgroundImage:[UIImage imageNamed:@"grayButtonBackground"] forState:UIControlStateHighlighted];
         [button addTarget:self action:@selector(keyBoardAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
-        if (i == 0 || i == 3 || i == 6) {
-            button.frame=CGRectMake(0, button.frame.origin.y, button.frame.size.width + 1, button.frame.size.height);
-        }
         [self mapButton:i button:button];
     }
     
-    UIButton *dotButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    dotButton.frame=CGRectMake(0, 60*3+3 ,keyboardScreenWidth/4, 60);
-    dotButton.backgroundColor=[UIColor whiteColor];
-    [dotButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    dotButton.titleLabel.font=[UIFont systemFontOfSize:24];
-    [dotButton addTarget:self action:@selector(keyBoardAction:) forControlEvents:UIControlEventTouchUpInside];
-    [dotButton setTitle:@"." forState:UIControlStateNormal];
-    dotButton.tag = 11;
-    [self addSubview:dotButton];
-    self.dotButton = dotButton;
-    
-    UIButton *zeroButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    zeroButton.frame = CGRectMake(keyboardScreenWidth/4+1*space,60*3+3, keyboardScreenWidth/4-1, 60);
-    zeroButton.backgroundColor = [UIColor whiteColor];
-    [zeroButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    zeroButton.titleLabel.font = [UIFont systemFontOfSize:24];
-    [zeroButton setTitle:@"0" forState:UIControlStateNormal];
-    zeroButton.tag = 0;
-    [zeroButton addTarget:self action:@selector(keyBoardAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:zeroButton];
-    self.zeroButton = zeroButton;
-    
-    UIButton *minusButton=[UIButton buttonWithType:UIButtonTypeSystem];
-    minusButton.frame=CGRectMake(keyboardScreenWidth/4*2+space,60*3+3, keyboardScreenWidth/4-1, 60);
-    minusButton.backgroundColor=[UIColor whiteColor];
-    [minusButton setTitle:@"-" forState:UIControlStateNormal];
-    [minusButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    minusButton.tag=12;
-    [minusButton addTarget:self action:@selector(keyBoardAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:minusButton];
-    self.minusButton = minusButton;
-    
-    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    deleteButton.backgroundColor = [UIColor redColor];
-    deleteButton.frame=CGRectMake(keyboardScreenWidth/4*3 + space, 0, keyboardScreenWidth/4, 122);
+    UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    deleteButton.backgroundColor = [UIColor whiteColor];
+    deleteButton.tintColor = keyboardColor(30, 30, 30);
+    deleteButton.frame=CGRectMake(keyboardScreenWidth/4*3 + space,
+                                  space,
+                                  buttonWidth-space,
+                                  (2*buttonHeight+space));
     [deleteButton addTarget:self action:@selector(keyBoardAction:) forControlEvents:UIControlEventTouchUpInside];
     deleteButton.tag=10;
-    UIImageView *deleteImage=[[UIImageView alloc]initWithFrame:CGRectMake((keyboardScreenWidth/4-1 - 28) * 1.0 / 2, 50, 28, 20)];
-    deleteImage.image=[UIImage imageNamed:@"keyboardDelete"];
-    [deleteButton addSubview:deleteImage];
+    deleteButton.layer.cornerRadius = 8;
+    deleteButton.clipsToBounds = YES;
+    [deleteButton setBackgroundImage:[UIImage imageNamed:@"grayButtonBackground"] forState:UIControlStateHighlighted];
+    UIImage *deleteImg = [UIImage imageNamed:@"keyboardDelete"];
+    deleteImg = [deleteImg imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImageView *dImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 28, 20)];
+    dImageView.center = CGPointMake(CGRectGetWidth(deleteButton.frame)/2, CGRectGetHeight(deleteButton.frame)/2);
+    dImageView.tintColor = keyboardColor(30, 30, 30);
+    dImageView.image = deleteImg;
+    [deleteButton addSubview:dImageView];
     [self addSubview:deleteButton];
     self.deleteButton = deleteButton;
     
     UIButton *confirmbutton=[UIButton buttonWithType:UIButtonTypeSystem];
-    confirmbutton.frame=CGRectMake(keyboardScreenWidth/4*3 + space, 61*2, keyboardScreenWidth/4, 122);
-    confirmbutton.backgroundColor = [UIColor grayColor];
+    confirmbutton.frame=CGRectMake(keyboardScreenWidth/4*3 + space,
+                                   CGRectGetMaxY(deleteButton.frame)+space,
+                                   buttonWidth-space,
+                                   (2*buttonHeight+space));
+    confirmbutton.backgroundColor = keyboardColor(88, 88, 88);
     [confirmbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     confirmbutton.titleLabel.font=[UIFont systemFontOfSize:20];
     [confirmbutton setTitle:@"确 定" forState:UIControlStateNormal];
     [confirmbutton addTarget:self action:@selector(keyBoardAction:) forControlEvents:UIControlEventTouchUpInside];
     confirmbutton.tag=13;
+    confirmbutton.layer.cornerRadius = 8;
+    confirmbutton.clipsToBounds = YES;
     [self addSubview:confirmbutton];
     self.confirmButton = confirmbutton;
 }

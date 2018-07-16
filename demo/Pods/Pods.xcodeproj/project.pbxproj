@@ -31,9 +31,10 @@
 		178E932469C99BDA274A43682B889D28 /* Pods-PGNumberKeyboard-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PGNumberKeyboard-acknowledgements.markdown"; sourceTree = "<group>"; };
 		524E69ADD77D4CBFB517D332C8B7D559 /* PGNumberKeyboard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PGNumberKeyboard.m; path = PGNumberKeyboard/PGNumberKeyboard.m; sourceTree = "<group>"; };
 		5CF7B354CB8F6133946DEF4D7FF71473 /* Pods-PGNumberKeyboard-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PGNumberKeyboard-acknowledgements.plist"; sourceTree = "<group>"; };
+		7DD7397520FC4AB60053749B /* grayButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grayButtonBackground.png; path = ../../../../../QdtiOS/Pointer/Images.xcassets/grayButtonBackground.imageset/grayButtonBackground.png; sourceTree = "<group>"; };
 		84FF848D569FAFD1ED4914C36A97B81D /* Pods-PGNumberKeyboard-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PGNumberKeyboard-frameworks.sh"; sourceTree = "<group>"; };
-		87BAA945818838FB595D31A8CA2F8433 /* libPods-PGNumberKeyboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-PGNumberKeyboard.a"; path = "libPods-PGNumberKeyboard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		87BAA945818838FB595D31A8CA2F8433 /* libPods-PGNumberKeyboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PGNumberKeyboard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A501027D7D8990F7F616E23303BF1E31 /* PGNumberKeyboard.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PGNumberKeyboard.xcconfig; sourceTree = "<group>"; };
 		B63C6A64CF66340668996F78DA6BB482 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		BEED540523EB5F3D350AC6145B35E35C /* PGNumberKeyboard-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PGNumberKeyboard-prefix.pch"; sourceTree = "<group>"; };
@@ -43,7 +44,7 @@
 		E097B3B1A8F2E22CCF5F217F376DBCFA /* PGNumberKeyboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PGNumberKeyboard-dummy.m"; sourceTree = "<group>"; };
 		E7FC17592266B4F672711000B4FB2581 /* Pods-PGNumberKeyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PGNumberKeyboard.release.xcconfig"; sourceTree = "<group>"; };
 		ED6A61D4F2611AC03A6785B9D9CBDA63 /* Pods-PGNumberKeyboard-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PGNumberKeyboard-resources.sh"; sourceTree = "<group>"; };
-		F1EDA7C80A19DB86164C9CBEBEDCDB99 /* libPGNumberKeyboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPGNumberKeyboard.a; path = libPGNumberKeyboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1EDA7C80A19DB86164C9CBEBEDCDB99 /* libPGNumberKeyboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPGNumberKeyboard.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE4B2ABA3B3792AE6A1F212C0DF952C2 /* Pods-PGNumberKeyboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PGNumberKeyboard-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				CBD7F89F1E869174AB1C686F79C1F54D /* keyboardDelete.png */,
+				7DD7397520FC4AB60053749B /* grayButtonBackground.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -163,7 +165,6 @@
 				C07F40D1663C03C47486EFA30305F84F /* Resources */,
 				C57916FB5BA6EBB555302DF646F76B1D /* Support Files */,
 			);
-			name = PGNumberKeyboard;
 			path = PGNumberKeyboard;
 			sourceTree = "<group>";
 		};
